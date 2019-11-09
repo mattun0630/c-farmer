@@ -1,0 +1,12 @@
+<h３>基本情報変更</h３>
+	<%= form_for(@user) do |f| %>
+	    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+	    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+	    <h5>ニックネーム</h5>
+	    <%= f.text_field :name %>
+
+	    <h5>メールアドレス</h5>
+	    <%= f.text_field :email %>
+		<%= f.submit '基本情報を変更する' %>
+	<% end %>
+	<%= link_to 'マイページへ', user_path(@user) %>

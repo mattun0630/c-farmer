@@ -1,0 +1,14 @@
+
+<% @posts.each do |post| %>
+	<br>
+	<p><%= post.user.name %>さんが</p>
+	<p><%= post.title %>を投稿しました</p>
+	<p>コメント：<br>
+	 	<%= post.description %></p>
+			コメントに対する反応
+			<% post.post_comments.each do |post_comment| %>
+			<p><%= post_comment.comment %></p>
+		<% end %>
+	<br>
+
+<% end %>
