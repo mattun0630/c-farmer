@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resource :favorites, only: [:create, :destroy]
+    resource :replys, only: [:create, :destroy]
   end
 
   resources :maps

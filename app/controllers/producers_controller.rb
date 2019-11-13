@@ -1,6 +1,8 @@
 class ProducersController < ApplicationController
  def show
   	  @producer = Producer.find(params[:id])
+  	  @replys = @producer.replys
+  	  @reply_posts= @producer.reply_posts
  end
  def edit
       @producer = Producer.find(params[:id])
