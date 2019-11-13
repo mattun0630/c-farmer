@@ -1,17 +1,13 @@
+<h1>全ての生産者</h1>
 <% @producers.each do |producer| %>
-	<br>
-
-	<h5>姓（漢字）</h5>
-	<%= producer.producer_name %>
-	<h5>郵便番号</h5>
-	<%= producer.post %>
-	<h5>住所</h5>
-	<%= producer.a_address %>
-	<h5>電話番号</h5>
-	<%= producer.phone %>
-	<h5>メールアドレス</h5>
-	<%= producer.email %>
-
-	<br>
-
+	<table border='1'>
+	  <caption></caption>
+	  <thead>
+	    <tr><th>住所</th><th>生産者</th></tr>
+	  </thead>
+	  <tbody>
+	    <tr><td><%= producer.a_address %></td>
+    	<td><%= link_to producer.producer_name, producer_path(producer.id)%></td></tr>
+	  </tbody>
+	</table>
 <% end %>

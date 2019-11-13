@@ -4,6 +4,7 @@ class CreateMaps < ActiveRecord::Migration[5.2]
       t.integer :producer_id
       t.text :comment
       t.string :lonlat
+      t.text :address
 
       t.timestamps
     end

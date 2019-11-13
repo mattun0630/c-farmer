@@ -15,3 +15,23 @@
 	<%= link_to "プロフィール編集", edit_producer_path(@producer) %>
 <% end %>
 
+<div id="map" style="height: 250px; width: 250px;"></div>
+
+<%=
+  map(:center => {
+      :latlng => [36, 140],
+      :zoom => 4,
+  })
+%>
+
+<script>
+  // rubyから渡された住所配列をjsの変数に格納
+  var maps = <%= @maps.to_json.html_safe %>;
+
+  for(var hash_count = 0; hash_count < maps.length; hash_count++){
+    // 緯度経度とコメントを取り出しマーカー化
+    L.marker(maps[hash_count].lonlat.split(','), {icon: L.icon({iconUrl: "/marker.png"})},)
+      .bindPopup(maps[hash_count].comment)
+      .addTo(map);
+  }
+</script>

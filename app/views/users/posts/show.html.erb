@@ -1,32 +1,13 @@
-<table>
-  <thead>
-    <tr>
-      <th>投稿内容</th>
-      <th>本文</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td><%= @post.title %></td>
-        <td><%= @post.description %></td>
-    </tr>
-  </tbody>
-</table>
-
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
-  <br><br>
-  <%= @post.post_comments.count %>件コメント
-  <% @post.post_comments.each do |post_comment| %>
-  <br>
-    <%= post_comment.comment %>
-  <br>
-  <% end %>
-  <%= form_for [@post, @post_comment] do |f| %>
-
-    <%= f.text_field :comment  %>
-
-  <%= f.submit "送信する" %>
-
+<%= @post.title %>
+<%= @post.description %>
+<% if @post.user == current_user %>
+  <%= link_to "削除", post_path(@post), method: :delete %>
 <% end %>
+<% @post.each do |post| %>
+  <hr>
+  <p><%=link_to post.title, post_path(post.id) %></p>
+<% end %>
+<% @favorite_posts.each do |post| %>
+  <hr>
+  <p><span>ファボツイート内容: </span><%=link_to post.body, post_path(post.id) %></p>
+<% end %

@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   end
   resources :producers
   resources :products
-  resources :posts
+
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+  end
+
   resources :maps
 
   namespace :users do

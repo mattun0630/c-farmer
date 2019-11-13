@@ -19,3 +19,31 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+div.sample1 {
+  width: 50px;
+  color: white;
+  background: aqua;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  perspective: 1000px;
+  transform: translate3d(150px, 30px, 0px) rotateY(0deg) scale3d(2,2,2);
+  animation: divAnimation 3s ease-in-out infinite alternate;
+  border-radius: 10px;
+}
+
+@keyframes divAnimation {
+  0% {
+    background: aqua;
+    transform: translate3d(150px, 30px, 0px) rotateY(0deg) scale3d(2,2,2);   
+  }
+  50% {
+    background: blue;
+    transform: translate3d(175px, 40px, 50px) rotateY(180deg) scale3d(1.75,1.75,1.75);    
+  }
+  100% {
+    background: navy;
+    transform: translate3d(200px, 50px, 100px) rotateY(0deg) scale3d(1.5,1.5,1.5);    
+  }
+}

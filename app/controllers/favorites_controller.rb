@@ -1,20 +1,17 @@
 class FavoritesController < ApplicationController
-	    def create
-            post = Post.find(params[:post_id])
-            favorite = current_user.favorites.new(post_id: post.id)
-            favorite.save
-            redirect_to post_path(post)
-        end
+  def create
+    # こう記述することで、「current_userに関連したFavoriteクラスの新しいインスタンス」が作成可能。
+    # つまり、favorite.user_id = current_user.idが済んだ状態で生成されている。
+    # buildはnewと同じ意味で、アソシエーションしながらインスタンスをnewする時に形式的に使われる。
+    favorite = current_user.favorites.build(post_id: params[:post_id])
+    favorite.save
+    redirect_to posts_path
+  end
 
-        def destroy
-            post = Post.find(params[:post_id])
-            favorite = current_user.favorites.find_by(post_id: post.id)
-            favorite.destroy
-            redirect_to post_path(post)
-        end
-    private
-    def favorite_params
-      params.require(:favorite).permit(:user_id,
-                                       :post__id)
-    end
+  def destroy
+    favorite = Favorite.find_by(post_id: params[:post_id], user_id: current_user.id)
+    favorite.destroy
+    redirect_to posts_path
+  end
+
 end

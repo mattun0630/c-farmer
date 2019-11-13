@@ -31,14 +31,16 @@
       <% if producer_signed_in? %>
           生産者の方：
           <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
-          <%= link_to "全ての商品を見る", products_path %>
-          <%= link_to "全ての投稿を見る", posts_path %>
+          <%= link_to "マイページ", producer_path(current_producer.id) %>
           <%= link_to '商品を追加する', new_producers_product_path %>
         </li>
       <% else %>
           <%= link_to "生産者新規登録", new_producer_registration_path %>
           <%= link_to "生産者ログイン", new_producer_session_path %>
       <% end %>
+          <%= link_to "全ての商品を見る", products_path %>
+          <%= link_to "全ての投稿を見る", posts_path %>
+          <%= link_to "全ての生産者を見る", producers_path %>
     </div>
 
 
