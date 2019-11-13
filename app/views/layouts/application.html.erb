@@ -19,9 +19,8 @@
           <%= link_to "マイページ", user_path(current_user.id) %>
           <%= link_to "投稿してみる", new_users_post_path %>
       <% else %>
-          ユーザの方：
-          <%= link_to "新規登録", new_user_registration_path %>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ユーザ新規登録", new_user_registration_path %>
+          <%= link_to "ユーザログイン", new_user_session_path %>
       <% end %>
           <%= link_to "全ての商品を見る", products_path %>
           <%= link_to "全ての投稿を見る", posts_path %>
@@ -29,7 +28,6 @@
     </div>
     <div>
       <% if producer_signed_in? %>
-          生産者の方：
           <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
           <%= link_to "マイページ", producer_path(current_producer.id) %>
           <%= link_to '商品を追加する', new_producers_product_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'follows/create'
+  get 'follows/destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :producers, controllers: {
     sessions:      'producers/sessions',
@@ -12,7 +14,10 @@ Rails.application.routes.draw do
   namespace :producers do
    resources :products
   end
-  resources :producers
+  resources :producers do
+    resource :follows, only: [:create, :destroy]
+  end
+
   resources :products
 
   resources :posts do

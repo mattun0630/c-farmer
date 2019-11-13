@@ -1,13 +1,15 @@
 <h1>全ての生産者</h1>
 <% @producers.each do |producer| %>
-	<table border='1'>
-	  <caption></caption>
-	  <thead>
-	    <tr><th>住所</th><th>生産者</th></tr>
-	  </thead>
-	  <tbody>
-	    <tr><td><%= producer.a_address %></td>
-    	<td><%= link_to producer.producer_name, producer_path(producer.id)%></td></tr>
-	  </tbody>
-	</table>
+	<%= producer.a_address %>
+	<%= link_to producer.producer_name, producer_path(producer.id)%>
+	<% if user_signed_in? %>
+		<% if producer.followed_by?(current_user) %>
+			<p><span>フォロー解除: </span><%=link_to producer.follows.count, producer_follows_path(producer.id), method: :delete %></p>
+		<% else %>
+			<p><span>フォロー登録: </span><%=link_to producer.follows.count, producer_follows_path(producer.id), method: :post %></p>
+			<% end %>
+		<% else %>
+			<p><span>フォロー数: </span><%= producer.follows.count %></p>
+	<% end %>
 <% end %>
+

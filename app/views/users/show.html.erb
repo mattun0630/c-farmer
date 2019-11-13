@@ -1,20 +1,32 @@
-<h3>ユーザ詳細</h3>
-
-<h5>姓（漢字）</h5>
-<%= @user.user_name %>
-<h5>郵便番号</h5>
-<%= @user.post %>
-<h5>住所</h5>
-<%= @user.a_address %>
-<h5>電話番号</h5>
-<%= @user.phone %>
-<h5>メールアドレス</h5>
-<%= @user.email %>
-
-<% if @user.id == current_user.id %>
-	<%= link_to "プロフィール編集", edit_user_path(@user) %>
-	<%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
-<% end %>
-
+<h2>ユーザ詳細</h2>
+	<h5>姓（漢字）</h5>
+	<%= @user.user_name %>
+	<h5>郵便番号</h5>
+	<%= @user.post %>
+	<h5>住所</h5>
+	<%= @user.a_address %>
+	<h5>電話番号</h5>
+	<%= @user.phone %>
+	<h5>メールアドレス</h5>
+	<%= @user.email %>
+	<% if @user.id == current_user.id %>
+		<%= link_to "プロフィール編集", edit_user_path(@user) %>
+		<%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
+	<% end %>
+<h2>自分の全ての投稿</h2>
+	<% @posts.each do |post| %>
+		<%= post.title %>
+		<%= post.description %>
+	<% end %>
+<h2>お気に入りした全ての投稿</h2>
+	<% @favorite_posts.each do |post| %>
+		<%= post.title %>
+		<%= post.description %>
+	<% end %>
+<h2>フォロー中の生産者</h2>
+	<% @follow_producers.each do |producer| %>
+		<%= producer.a_address %>
+		<%= link_to producer.producer_name, producer_path(producer.id)%>
+	<% end %>
 
 

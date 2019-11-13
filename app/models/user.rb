@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
+  has_many :follows
+  has_many :follow_producers, through: :follows, source: :producer
 end

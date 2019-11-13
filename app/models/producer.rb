@@ -4,4 +4,8 @@ class Producer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
+  has_many :follows 
+  def followed_by?(user)
+     follows.where(user_id: user.id).exists?
+  end
 end

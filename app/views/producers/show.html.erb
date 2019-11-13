@@ -1,6 +1,6 @@
-<h3>事業者様詳細</h3>
+<h3>生産者詳細</h3>
 
-<h5>姓（漢字）</h5>
+<h5>生産者名</h5>
 <%= @producer.producer_name %>
 <h5>郵便番号</h5>
 <%= @producer.post %>
@@ -10,10 +10,11 @@
 <%= @producer.phone %>
 <h5>メールアドレス</h5>
 <%= @producer.email %>
-
 <% if @producer.id == current_producer.id %>
-	<%= link_to "プロフィール編集", edit_producer_path(@producer) %>
+  <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
+  <%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%>
 <% end %>
+
 
 <div id="map" style="height: 250px; width: 250px;"></div>
 

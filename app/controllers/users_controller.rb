@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   	  @user = User.find(params[:id])
       @posts = @user.posts
       @favorite_posts = @user.favorite_posts
+      @follow_producers = @user.follow_producers
   end
   def edit
       @user = User.find(params[:id])
