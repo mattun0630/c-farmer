@@ -33,7 +33,10 @@ class DeviseCreateProducers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
 
-       t.string :name
+      t.string :producer_name
+      t.string :post
+      t.string :a_address
+      t.string :phone
       t.timestamps null: false
     end
 

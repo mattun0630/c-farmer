@@ -1,0 +1,12 @@
+<h2>商品新規追加</h2>
+<%= form_for(@product, url: producers_products_path) do |f| %>
+    <%= f.label :product_name %><br>
+    <%= f.text_field :product_name %><br>
+    <%= f.label :detail %><br>
+    <%= f.text_field :detail %><br>
+	    <% @tags.each do |tag| %>
+		    <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
+		    <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
+	  	<% end %>
+    <%= f.submit '保存' %>
+<% end %>

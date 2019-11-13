@@ -19,6 +19,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def after_sign_out_path_for(resource)
+      new_user_session_path
+  end
+
+  def after_sign_up_path_for(resource)
+      products_path
+  end
+
   # PUT /resource
   # def update
   #   super

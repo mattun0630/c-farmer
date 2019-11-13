@@ -6,7 +6,7 @@ ruby '2.5.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -70,12 +70,17 @@ gem "font-awesome-rails"
 
 gem 'bootstrap-sass'
 
+
+gem 'awesome_print', require: 'ap'
+
+gem 'meta_request', group: :development
+
+gem 'pry-rails', group: :development
+
+gem 'acts-as-taggable-on'
+
+gem 'leaflet-rails'
+# map上のマーカー周りをゴニョゴニョする
+gem 'leaflet-markercluster-rails'
+# 住所を緯度経度に変換する
 gem 'geocoder'
-
-   # 開発環境(ローカル)ではSQLite3を使用
-  gem 'sqlite3', group: :development
-group :production do
-
-  # 本番環境(heroku)ではPostgreSQLを使用
-  gem 'pg'
-end

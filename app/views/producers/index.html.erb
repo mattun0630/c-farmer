@@ -1,0 +1,17 @@
+<% @producers.each do |producer| %>
+	<br>
+
+	<h5>姓（漢字）</h5>
+	<%= producer.producer_name %>
+	<h5>郵便番号</h5>
+	<%= producer.post %>
+	<h5>住所</h5>
+	<%= producer.a_address %>
+	<h5>電話番号</h5>
+	<%= producer.phone %>
+	<h5>メールアドレス</h5>
+	<%= producer.email %>
+
+	<br>
+
+<% end %>

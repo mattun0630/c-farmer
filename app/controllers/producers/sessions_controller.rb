@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+
 class Producers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -16,7 +17,7 @@ class Producers::SessionsController < Devise::SessionsController
       new_producer_session_path
   end
   def after_sign_in_path_for(resource)
-      producer_path(current_producer.id)
+      producers_products_path
   end
 
   # DELETE /resource/sign_out

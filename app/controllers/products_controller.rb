@@ -1,24 +1,18 @@
 class ProductsController < ApplicationController
-
-  def new
-  	@product = Product.new
+   def index
+     @tags = ActsAsTaggableOn::Tag.all
+     if params[:tag]
+      @products = Product.tagged_with(params[:tag])
+     else
+      @products = Product.all
+     end
+      @product = Product.new
   end
 
-  def create
-    @product = Product.new(product_params)
-    @product.user_id = current_user.id
-    @product.save
-    redirect_to products_path
-  end
+    private
 
-  def index
-    @products = Product.all
-  end
+  	def product_params
+    	params.require(:product).permit(:product_image,:producer_id, :product_name, :detail, tag_list: [])
+  	end
 
-  private
-
-  def product_params
-    params.require(:product).permit( :product_name, :product_image, :detail)
-  end
-# ここまで。この下にendがひとつだけあるのを確認して下さい。
 end

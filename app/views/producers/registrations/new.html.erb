@@ -1,14 +1,19 @@
-
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+  <%= f.label :producer_name, "事業者名※全角入力" %>
+  <%= f.text_field :producer_name %>
 
+  <%= f.label :post, "郵便番号　※半角入力、ハイフン不要" %>
+  <%= f.text_field :post %>
+
+  <%= f.label :a_address, "住所" %>
+  <%= f.text_field :a_address %>
+
+  <%= f.label :phone, "電話番号　※半角入力、ハイフン不要" %>
+  <%= f.text_field :phone %>
 
   <div class="field">
     <%= f.label :email %><br />

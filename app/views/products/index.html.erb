@@ -1,4 +1,21 @@
+<h2>商品検索</h2>
+<%= form_for(@product, url: {controller: 'producers/products', action: 'search' }) do |f| %>
+    <%= f.label :product_name %><br>
+    <%= f.text_field :product_name %><br>
+    <%= f.label :detail %><br>
+    <%= f.text_field :detail %><br>
+	    <% @tags.each do |tag| %>
+		    <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
+		    <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
+	  	<% end %>
+    <%= f.submit '検索' %>
+<% end %>
+
+
+
+
 <% @products.each do |product| %>
   <%= product.product_name %>
   <%= product.detail %>
+  <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
 <% end %>

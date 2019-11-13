@@ -1,21 +1,25 @@
 current directory: /vagrant/c-farmer/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.13/ext/mri
-/usr/bin/ruby2.5 -r ./siteconf20191109-2415-180ynbr.rb extconf.rb
+/usr/bin/ruby2.5 -r ./siteconf20191110-2339-1o2y4tq.rb extconf.rb
 creating Makefile
 
 current directory: /vagrant/c-farmer/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.13/ext/mri
 make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 1.1 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
 
 current directory: /vagrant/c-farmer/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.13/ext/mri
 make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 1.1 s in the future
 compiling bcrypt_ext.c
 compiling crypt_blowfish.c
 compiling crypt_gensalt.c
 compiling wrapper.c
 gcc  -D__SKIP_GNU -Wdate-time -D_FORTIFY_SOURCE=2    -c -o x86.o x86.S
 linking shared-object bcrypt_ext.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
 
 current directory: /vagrant/c-farmer/vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.13/ext/mri
 make "DESTDIR=" install
-make: Warning: File 'bcrypt_ext.so' has modification time 0.037 s in the future
-/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20191109-2415-y88mzt
+make: Warning: File 'Makefile' has modification time 0.43 s in the future
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20191110-2339-1emg1ql
 make: warning:  Clock skew detected.  Your build may be incomplete.

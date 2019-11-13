@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Maps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Comment</th>
+      <th>Lonlat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @maps.each do |map| %>
+      <tr>
+        <td><%= map.address %></td>
+        <td><%= map.comment %></td>
+        <td><%= map.lonlat %></td>
+        <td><%= link_to 'Show', map %></td>
+        <td><%= link_to 'Edit', edit_map_path(map) %></td>
+        <td><%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Map', new_map_path %>
+
+<div id="map" style="height: 250px; width: 250px;"></div>
+
+<%=
+  map(:center => {
+      :latlng => [36, 140],
+      :zoom => 4,
+  })
+%>
+
+<script>
+  // rubyから渡された住所配列をjsの変数に格納
+  var maps = <%= @maps.to_json.html_safe %>;
+
+  for(var hash_count = 0; hash_count < maps.length; hash_count++){
+    // 緯度経度とコメントを取り出しマーカー化
+    L.marker(maps[hash_count].lonlat.split(','), {icon: L.icon({iconUrl: "/marker.png"})},)
+      .bindPopup(maps[hash_count].comment)
+      .addTo(map);
+  }
+</script>

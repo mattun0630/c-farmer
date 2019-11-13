@@ -13,6 +13,12 @@ class Producers::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
+  def after_sign_out_path_for(resource)
+      new_producer_session_path
+  end
+  def after_sign_up_path_for(resource)
+      producers_products_path
+  end
 
   # GET /resource/edit
   # def edit

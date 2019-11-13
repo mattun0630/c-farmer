@@ -1,2 +1,17 @@
-<%= @producer.name %></h3>
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+<h3>事業者様詳細</h3>
+
+<h5>姓（漢字）</h5>
+<%= @producer.producer_name %>
+<h5>郵便番号</h5>
+<%= @producer.post %>
+<h5>住所</h5>
+<%= @producer.a_address %>
+<h5>電話番号</h5>
+<%= @producer.phone %>
+<h5>メールアドレス</h5>
+<%= @producer.email %>
+
+<% if @producer.id == current_producer.id %>
+	<%= link_to "プロフィール編集", edit_producer_path(@producer) %>
+<% end %>
+
