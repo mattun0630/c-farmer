@@ -26,6 +26,10 @@
   <%= post.comment %>
 <% end %>
 <h2>この生産者の地図情報一覧</h2>
+<% @maps.each do |map| %>
+        <td><%= map.address %></td>
+        <td><%= map.comment %></td>
+<% end %>
 
 
 

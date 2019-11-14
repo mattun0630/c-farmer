@@ -4,6 +4,7 @@ class ProducersController < ApplicationController
   	  @products = @producer.products
   	  @replys = @producer.replys
   	  @reply_posts= @producer.reply_posts
+      @maps =@producer.maps
  end
  def edit
       @producer = Producer.find(params[:id])
@@ -14,7 +15,7 @@ class ProducersController < ApplicationController
      redirect_to producer_path(@producer.id)
  end
  def index
-	 @producers =Producer.all
+	   @producers =Producer.all
  end
  private
  def producer_params

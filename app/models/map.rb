@@ -1,6 +1,5 @@
 class Map < ApplicationRecord
 	 before_save :update_lonlat
-   belongs_to :producer
 
     def update_lonlat
         lonlat = address_to_lonlat(read_attribute(:address))
@@ -13,4 +12,5 @@ class Map < ApplicationRecord
       lonlat = result.first.coordinates
       return lonlat.join(',')
     end
+     belongs_to :producer
 end
