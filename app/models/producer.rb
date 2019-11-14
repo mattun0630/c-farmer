@@ -5,6 +5,7 @@ class Producer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   has_many :follows
+  has_many :maps
   has_many :replys
   has_many :reply_posts, through: :replys, source: :post
   def followed_by?(user)

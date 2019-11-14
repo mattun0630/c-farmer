@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
   namespace :producers do
    resources :products
+   resources :maps
   end
   resources :producers do
     resource :follows, only: [:create, :destroy]
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
     resource :replys, only: [:create, :destroy]
   end
 
-  resources :maps
 
   namespace :users do
     resources :posts

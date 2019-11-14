@@ -31,7 +31,7 @@
           <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
           <%= link_to "マイページ", producer_path(current_producer.id) %>
           <%= link_to '商品を追加する', new_producers_product_path %>
-          <%= link_to "マップ情報を追加する", maps_path %>
+          <%= link_to "マップ情報を追加する", new_producers_map_path %>
         </li>
       <% else %>
           <%= link_to "生産者新規登録", new_producer_registration_path %>
