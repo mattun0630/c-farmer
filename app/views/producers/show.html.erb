@@ -10,14 +10,21 @@
 <%= @producer.phone %>
 <h5>メールアドレス</h5>
 <%= @producer.email %>
-<% if @producer.id == current_producer.id %>
+<% if @producer == current_producer %>
   <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
   <%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%>
+<% end %>
+<h2>この生産者の商品一覧一覧</h2>
+<% @products.each do |product| %>
+  <%= product.product_name %>
+  <%= product.detail %>
+  <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
 <% end %>
 <h2>この生産者の投稿一覧</h2>
 <% @reply_posts.each do |post| %>
   <%= post.comment %>
 <% end %>
+
 
 
 <div id="map" style="height: 250px; width: 250px;"></div>
