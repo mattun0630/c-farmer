@@ -1,5 +1,7 @@
 <h2>商品新規追加</h2>
 <%= form_for(@product, url: producers_products_path) do |f| %>
+	<%= f.label :product_image %><br>
+	<%= f.attachment_field  :product_image %>
     <%= f.label :product_name %><br>
     <%= f.text_field :product_name %><br>
     <%= f.label :detail %><br>

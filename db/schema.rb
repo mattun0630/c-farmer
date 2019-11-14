@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_120224) do
     t.string "post"
     t.string "a_address"
     t.string "phone"
+    t.string "producer_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_producers_on_email", unique: true
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_120224) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
-    t.text "product_image"
+    t.string "product_image_id"
     t.text "detail"
     t.integer "producer_id"
     t.integer "tag_id"
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_120224) do
     t.string "post"
     t.text "a_address"
     t.string "phone"
+    t.string "user_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

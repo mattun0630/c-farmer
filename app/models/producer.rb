@@ -10,4 +10,5 @@ class Producer < ApplicationRecord
   def followed_by?(user)
      follows.where(user_id: user.id).exists?
   end
+  attachment :producer_image
 end

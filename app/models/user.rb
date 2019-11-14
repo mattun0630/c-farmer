@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :favorite_posts, through: :favorites, source: :post
   has_many :follows
   has_many :follow_producers, through: :follows, source: :producer
+  attachment :user_image
 end

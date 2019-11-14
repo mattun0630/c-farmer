@@ -1,5 +1,7 @@
 <h2>ユーザ詳細</h2>
-	<h5>姓（漢字）</h5>
+	<h4>生産者名</h4>
+	<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+	<h5></h5>
 	<%= @user.user_name %>
 	<h5>郵便番号</h5>
 	<%= @user.post %>

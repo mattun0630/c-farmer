@@ -1,6 +1,7 @@
 <h3>生産者詳細</h3>
-
-<h5>生産者名</h5>
+<h4>生産者名</h4>
+<%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+<h5></h5>
 <%= @producer.producer_name %>
 <h5>郵便番号</h5>
 <%= @producer.post %>
@@ -24,6 +25,7 @@
 <% @reply_posts.each do |post| %>
   <%= post.comment %>
 <% end %>
+<h2>この生産者の地図情報一覧</h2>
 
 
 

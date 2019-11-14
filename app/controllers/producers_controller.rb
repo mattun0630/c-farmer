@@ -18,7 +18,7 @@ class ProducersController < ApplicationController
  end
  private
  def producer_params
-	params.require(:producer).permit(:producer_name, :email, :post, :a_address, :phone)
+	params.require(:producer).permit(:producer_name, :email, :post, :a_address, :phone, :producer_image)
  end
 
 end
