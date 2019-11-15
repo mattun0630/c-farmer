@@ -18,7 +18,7 @@ class Producers::MapsController < ApplicationController
     @map = Map.new(map_params)
     @map.producer_id = current_producer.id
     @map.save
-    redirect_to producers_maps_path
+    redirect_to products_path
   end
   def update
 

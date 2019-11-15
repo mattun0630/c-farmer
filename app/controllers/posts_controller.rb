@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 	end
 	def new
 	    @post = Post.new
+	    @products = @producer.products.all
   	end
   	def show
     	@post = Post.find(params[:id])

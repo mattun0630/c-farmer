@@ -4,6 +4,10 @@ class Users::PostsController < ApplicationController
 	end
   	def new
 	    @post = Post.new
+	    @user = current_user
+	    @producer =@user.follow_producers
+	    @products =@producer.products.all
+
   	end
   	def show
     	@post = Post.find(params[:id])

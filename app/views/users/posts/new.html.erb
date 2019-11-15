@@ -5,7 +5,10 @@
       <p><%= f.radio_button :title, "質問" %>質問</p>
       <p><%= f.radio_button :title, "届いたよ！" %>届いたよ！</p>
       <p><%= f.radio_button :title, "メッセージ" %>メッセージ！</p>
-
+    <h4>フォローしている生産者</h4>
+      <%= f.collection_select :item, @producer, :producer_name, :producer_name %>
+     <h4>フォローしている生産者の商品一覧</h4>
+      <%= f.collection_select :item, @products, :product_name, :product_name %>
     <h4>本文</h4>
       <%= f.text_area :description %>
 
