@@ -9,7 +9,8 @@ class PostsController < ApplicationController
   	def show
     	@post = Post.find(params[:id])
     	@user = @post.user
-    	@reply = Reply.new
+    	@reply = current_producer.replys.build
+    	@replys = @post.replys
 	end
 
   	def create

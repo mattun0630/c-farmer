@@ -1,7 +1,7 @@
 <%= @post.title %>
 <%= @post.description %>
 
-<%= form_for [@post, @reply] do |f| %>
+<%= form_for(@post, url: post_replys_path) do |f| %>
   <p>
     <%= f.label :comment,"返信する" %>
     <%= f.text_field :comment %>

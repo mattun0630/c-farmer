@@ -1,6 +1,7 @@
 <% @posts.each do |post| %>
 		<%= post.title %>
 		<%= post.description %>
+
 	<% if user_signed_in? %>
 		<% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
 	    	<p><span>お気に入り解除: </span><%=link_to post.favorites.count, post_favorites_path(post.id), method: :delete %></p>

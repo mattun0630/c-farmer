@@ -4,7 +4,7 @@ class ProducersController < ApplicationController
   	  @products = @producer.products
   	  @replys = @producer.replys
   	  @reply_posts= @producer.reply_posts
-      @maps =@producer.maps
+      @maps =@producer.maps.last(1)
  end
  def edit
       @producer = Producer.find(params[:id])
