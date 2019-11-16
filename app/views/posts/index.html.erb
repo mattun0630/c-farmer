@@ -1,6 +1,8 @@
 <% @posts.each do |post| %>
-		<%= post.title %>
-		<%= post.description %>
+		『<%= post.user.user_name %>』さんが
+		『<%= post.follow_producer %>』さんに
+		『<%= post.title %>』を投稿しました。
+		内容：<%= post.description %>
 
 	<% if user_signed_in? %>
 		<% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-   def index
+  def index
      @tags = ActsAsTaggableOn::Tag.all
      if params[:tag]
       @products = Product.tagged_with(params[:tag])
@@ -8,11 +8,13 @@ class ProductsController < ApplicationController
      end
       @product = Product.new
   end
+  def show
+    @product = Product.find(params[:id])
+  end
+  private
 
-    private
-
-  	def product_params
-    	params.require(:product).permit(:product_image,:producer_id, :product_name, :detail, tag_list: [])
-  	end
+	def product_params
+  	params.require(:product).permit(:product_image,:producer_id, :product_name, :detail, tag_list: [])
+	end
 
 end

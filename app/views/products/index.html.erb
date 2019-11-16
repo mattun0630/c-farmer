@@ -11,12 +11,11 @@
     <%= f.submit '検索' %>
 <% end %>
 
-
-
-
 <% @products.each do |product| %>
-  <%= attachment_image_tag product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
-  <%= product.product_name %>
-  <%= product.detail %>
+  <%= link_to product_path(product) do %>
+      商品画像：<%= attachment_image_tag product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+  <% end %>
+      商品名：<%= product.product_name %>
+      詳細：<%= product.detail %>
   <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
 <% end %>
