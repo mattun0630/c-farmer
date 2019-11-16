@@ -84,3 +84,7 @@ gem 'leaflet-rails'
 gem 'leaflet-markercluster-rails'
 # 住所を緯度経度に変換する
 gem 'geocoder'
+
+gem 'rails_admin', '~> 1.3'
+
+gem 'cancancan', '~> 2.0'

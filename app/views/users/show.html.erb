@@ -1,4 +1,7 @@
 <h2>ユーザ詳細</h2>
+<% if current_user.try(:admin?) %>
+ <%= link_to "管理人ページへ", rails_admin_path %>
+<% end %>
 	<h4>生産者名</h4>
 	<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
 	<h5></h5>
