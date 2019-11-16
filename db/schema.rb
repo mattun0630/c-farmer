@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 2019_11_13_120224) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.string "item"
     t.string "title"
+    t.string "follow_producer"
+    t.string "follow_item"
     t.text "description"
+    t.string "post_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
