@@ -1,44 +1,48 @@
 <h3>生産者詳細</h3>
-<h4>生産者名</h4>
-<%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
-<h5></h5>
-<%= @producer.producer_name %>
-<h5>郵便番号</h5>
-<%= @producer.post %>
-<h5>住所</h5>
-<%= @producer.a_address %>
-<h5>電話番号</h5>
-<%= @producer.phone %>
-<h5>メールアドレス</h5>
-<%= @producer.email %>
-<% if @producer == current_producer %>
-  <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
-  <%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%>
-<% end %>
-<h2>この生産者の商品一覧一覧</h2>
-<% @products.each do |product| %>
-  <%= product.product_name %>
-  <%= product.detail %>
-  <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
-<% end %>
-<h2>この生産者の投稿一覧</h2>
-<% @reply_posts.each do |post| %>
-  <%= post.comment %>
-<% end %>
-<h2>この生産者の地図情報</h2>
-<% @maps.each do |map| %>
-        <td><%= map.address %></td>
-        <td><%= map.comment %></td>
-<% end %>
+  <h4>生産者名</h4>
+      <%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+  <h5></h5>
+      <%= @producer.producer_name %>
+  <h5>郵便番号</h5>
+      <%= @producer.post %>
+  <h5>住所</h5>
+      <%= @producer.a_address %>
+  <h5>電話番号</h5>
+      <%= @producer.phone %>
+  <h5>メールアドレス</h5>
+      <%= @producer.email %>
 
-<div id="map" style="height: 350px; width: 350px;"></div>
+  <% if @producer == current_producer %>
+    <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
+    <%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%>
+  <% end %>
 
-<%=
-  map(:center => {
-      :latlng => [36, 140],
-      :zoom => 4,
-  })
-%>
+  <h2>この生産者の商品一覧</h2>
+  <% @products.each do |product| %>
+    <%= product.product_name %>
+    <%= product.detail %>
+    <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+  <% end %>
+
+  <h2>この生産者の返信一覧</h2>
+    <% @replys.each do |reply| %>
+      返信:<%= reply.comment %>
+  <% end %>
+
+  <h2>この生産者の地図情報</h2>
+    <% @maps.each do |map| %>
+      <td>市町村までの地図：<%= map.address %></td>
+      <td>アイコンを押すとコメントが出ます:<%= map.comment %></td>
+  <% end %>
+
+  <div id="map" style="height: 350px; width: 350px;"></div>
+
+  <%=
+    map(:center => {
+        :latlng => [36, 140],
+        :zoom => 4,
+    })
+  %>
 
 <script>
   // rubyから渡された住所配列をjsの変数に格納

@@ -12,6 +12,8 @@ class PostsController < ApplicationController
     	@user = @post.user
     	@reply = current_producer.replys.build
     	@replys = @post.replys
+    	# @replys = @producer.replys
+  	    # @reply_posts= @producer.reply_posts
 	end
 
   	def create

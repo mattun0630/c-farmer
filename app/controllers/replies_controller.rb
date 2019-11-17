@@ -1,5 +1,5 @@
-class ReplysController < ApplicationController
-  def create
+class RepliesController < ApplicationController
+	def create
     post = Post.find(params[:post_id])
     reply = current_producer.replys.build(reply_params)
     reply.post_id = post.id

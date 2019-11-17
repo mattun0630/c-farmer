@@ -88,3 +88,5 @@ gem 'geocoder'
 gem 'rails_admin', '~> 1.3'
 
 gem 'cancancan', '~> 2.0'
+
+gem  'pry-byebug'
