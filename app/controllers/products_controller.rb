@@ -9,12 +9,10 @@ class ProductsController < ApplicationController
       @product = Product.new
   end
   def show
-    @product = Product.find(params[:id])
+      @product = Product.find(params[:id])
   end
   private
-
 	def product_params
   	params.require(:product).permit(:product_image,:producer_id, :product_name, :detail, tag_list: [])
 	end
-
 end

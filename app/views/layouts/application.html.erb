@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CFarmer</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <title>CFarmer</title>
+          <%= csrf_meta_tags %>
+          <%= csp_meta_tag %>
+          <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
+          <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
   </head>
 
   <body>
-    <div>
       <% if user_signed_in? %>
-          ユーザの方：
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           <%= link_to "マイページ", user_path(current_user.id) %>
           <%= link_to "投稿してみる", new_users_post_path %>
-      <% else %>
-          <%= link_to "ユーザ新規登録", new_user_registration_path %>
-          <%= link_to "ユーザログイン", new_user_session_path %>
-      <% end %>
           <%= link_to "全ての商品を見る", products_path %>
           <%= link_to "全ての投稿を見る", posts_path %>
           <%= link_to "全ての生産者を見る", producers_path %>
-    </div>
-    <div>
-      <% if producer_signed_in? %>
+      <% elsif producer_signed_in? %>
           <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
           <%= link_to "マイページ", producer_path(current_producer.id) %>
           <%= link_to '商品を追加する', new_producers_product_path %>
           <%= link_to "マップ情報を変更する", new_producers_map_path %>
-        </li>
-      <% else %>
-          <%= link_to "生産者新規登録", new_producer_registration_path %>
-          <%= link_to "生産者ログイン", new_producer_session_path %>
-      <% end %>
           <%= link_to "全ての商品を見る", products_path %>
           <%= link_to "全ての投稿を見る", posts_path %>
           <%= link_to "全ての生産者を見る", producers_path %>
-    </div>
-
-
+      <% else %>
+          <%= link_to "ユーザ新規登録", new_user_registration_path %>
+          <%= link_to "ユーザログイン", new_user_session_path %>
+          <%= link_to "生産者新規登録", new_producer_registration_path %>
+          <%= link_to "生産者ログイン", new_producer_session_path %>
+          <%= link_to "全ての商品を見る", products_path %>
+          <%= link_to "全ての投稿を見る", posts_path %>
+          <%= link_to "全ての生産者を見る", producers_path %>
+      <% end %>
     <%= yield %>
   </body>
 </html>

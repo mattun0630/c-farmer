@@ -1,25 +1,26 @@
 <% @posts.each do |post| %>
+		<%= attachment_image_tag post.user.user_image, :user_image, :fill, 30, 30, format: 'jpeg' ,fallback: "no_image.jpg"%>
 		『<%= post.user.user_name %>』さんが
-		『<%= post.follow_producer %>』さんに
+		『<%= post.follow_producer %>』さんの
+		『<%= post.follow_item %>』が
 		『<%= post.title %>』を投稿しました。
-		内容：<%= post.description %>
-	<% post.replys.each do |reply| %>
-		返信:<%= reply.comment %>
-	<% end %>
-
-	<% if producer_signed_in? %>
-		　<%= link_to post_path(post) do %>
-		『<%= post.user.user_name %>』さんのコメントに返信
-		　<% end %>
-	<% end %>
-
-	<% if user_signed_in? %>
-		<% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-	    	<p><span>お気に入り解除: </span><%=link_to post.favorites.count, post_favorites_path(post.id), method: :delete %></p>
-		<% else %>
-	    	<p><span>お気に入り登録: </span><%=link_to post.favorites.count, post_favorites_path(post.id), method: :post %></p>
+		<%= post.description %>
+				<% post.replys.each do |reply| %>
+					<%= reply.producer.producer_name %>
+					<%= reply.comment %>
+				<% end %>
+			<% if producer_signed_in? %>
+				　<%= link_to post_path(post) do %>
+					『<%= post.user.user_name %>』さんのコメントに返信
+				　<% end %>
 			<% end %>
-		<% else %>
-			<p><span>お気に入り数: </span><%= post.favorites.count %></p>
-	<% end %>
+		<% if user_signed_in? %>
+			<% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+		    	<p><span>お気に入り解除: </span><%=link_to post.favorites.count, post_favorites_path(post.id), method: :delete %></p>
+			<% else %>
+		    	<p><span>いいね！: </span><%=link_to post.favorites.count, post_favorites_path(post.id), method: :post %>件</p>
+				<% end %>
+			<% else %>
+				<p><span>お気に入り数: </span><%= post.favorites.count %></p>
+		<% end %>
 <% end %>
