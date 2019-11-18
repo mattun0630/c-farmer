@@ -1,7 +1,4 @@
 <h2>マイページ</h2>
-			<% if current_user.try(:admin?) %>
-			 	<%= link_to "管理者ページへ", rails_admin_path %>
-			<% end %>
 			<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
 	<h5>ニックネーム</h5>
 			<%= @user.user_name %>

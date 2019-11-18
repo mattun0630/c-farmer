@@ -1,18 +1,15 @@
-
+<br><br>
   <%= form_for(@post, url: posts_path)  do |f| %>
     <h4>投稿内容</h4>
           <p><%= f.radio_button :title, "質問" %>質問</p>
           <p><%= f.radio_button :title, "届いたよ！" %>届いたよ！</p>
           <p><%= f.radio_button :title, "メッセージ" %>メッセージ！</p>
     <h4>フォローしている生産者</h4>
-          <%= f.collection_select :follow_producer, @producers, :producer_name, :producer_name,{class: "parent"} %>
+          <%= f.collection_select :follow_producer, @producers, :producer_name, :producer_name,{prompt: ""},{class: "parent"} %>
      <h4>フォローしている生産者の商品</h4>
-<!--           <% @producers.each do |producer| %>
-
-            <%= f.collection_select :follow_item, producer.products, :product_name, :product_name,{class: "children"}, data:{value: producer.producer_name} %>
-
-         <% end %> -->
-         <%= f.text_area :description %>
+        <% @producers.each do |producer| %>
+            <%= f.collection_select :follow_item, producer.products, :product_name, :product_name, {class: "children"}, data:{value: producer.producer_name} %>
+         <% end %>
     <h4>商品に対する要望など</h4>
           <%= f.text_area :description %>
     <%= f.submit '投稿' %>
@@ -20,7 +17,7 @@
   <% end %>
   <script>
     $(function() {
-  var $children = $('.children');
+  var $children = $('#post_follow_item');
   var original = $children.html();
 
   $('.parent').change(function() {

@@ -1,21 +1,39 @@
 <h2>商品検索</h2>
 <%= form_for(@product, url: {controller: 'producers/products', action: 'search' }) do |f| %>
-    <%= f.label :product_name %><br>
+    <%= f.label "キーワードとタグで検索" %><br>
     <%= f.text_field :product_name %><br>
-    <%= f.label :detail %><br>
-    <%= f.text_field :detail %><br>
-	    <% @tags.each do |tag| %>
-		    <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
-		    <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
-	  	<% end %>
+    <details>
+      <summary>全部のタグを出す</summary>
+        <dl>
+          <dt>
+            <% @tags.each do |tag| %>
+              <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
+              <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
+            <% end %>
+          </dt>
+        </dl>
+    </details>
     <%= f.submit '検索' %>
+
 <% end %>
 
 <% @products.each do |product| %>
-  <%= link_to product_path(product) do %>
-      商品画像：<%= attachment_image_tag product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
-  <% end %>
-      商品名：<%= product.product_name %>
-      詳細：<%= product.detail %>
-  <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+    <%= link_to product_path(product) do %>
+        <%= attachment_image_tag product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+    <%= product.product_name %>
+    <% end %>
+    <details>
+      <summary>商品詳細を見る</summary>
+        <dl>
+          <dt>
+            商品名　：<%= product.product_name %>
+          </dt>
+          <dt>
+            この商品について　：<%= product.detail %>
+          </dt>
+          <dt>
+            この商品についているタグ　:<%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+          </dt>
+        </dl>
+    </details>
 <% end %>

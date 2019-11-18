@@ -12,7 +12,6 @@ array = %w(野菜 果物 お茶 産地直送 期間限定 北海道
 
 自然栽培 減農薬栽培 農薬化学肥料不使用 自家採取
 
-
 有機JAS認証 特別栽培認証 九州 四国 特A受賞米 贈答品 一等米 お試し野菜セット 家庭用 定期購入 期間限定 離乳食・幼児食用 サラダ野菜セット 動物性堆肥不使用 お歳暮 共同購入 お中元
 
 北海道
@@ -29,3 +28,13 @@ array.each{ |tag|
   tag_list.name = tag
   tag_list.save
 }
+
+User.create(:email => 'example@user.com', :password => '000000')
+Producer.create(:email => 'example@producer.com', :password => '000000')
+
+if Rails.env == "development"
+    5.times do |i|
+        Product.create!(:producer_id=>1, :tag_id=>1, :detail=>1,:product_name=> "商品名" + (i + 1).to_s)
+        Post.create!(:user_id=>1, :follow_item=> "商品名" + (i + 1).to_s)
+    end
+end

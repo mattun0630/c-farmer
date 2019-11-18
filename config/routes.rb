@@ -36,5 +36,7 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'producers/products#index', as: :tag
   get 'producers/products/search', to: 'producers/products#search'
   post 'producers/products/search', to: 'producers/products#search'
+   get 'products/search', to: 'products#search'
+  post 'products/search', to: 'products#search'
 
 end

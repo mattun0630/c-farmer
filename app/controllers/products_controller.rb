@@ -7,9 +7,14 @@ class ProductsController < ApplicationController
       @products = Product.all
      end
       @product = Product.new
+     render 'products/index'
   end
   def show
       @product = Product.find(params[:id])
+  end
+  def search
+      @products = Product.where("product_name LIKE ?", "%#{product_params[:product_name]}%")
+      @products = @products.tagged_with(product_params[:tag_list], :match_all => false)
   end
   private
 	def product_params

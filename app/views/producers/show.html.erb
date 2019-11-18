@@ -1,5 +1,5 @@
-<h2>生産者詳細</h2>
-  <h5>生産者名</h5>
+
+  <h3><%= @producer.producer_name %>のページ</h3>
       <%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
   <h5></h5>
       <%= @producer.producer_name %>
@@ -7,9 +7,9 @@
       <%= @producer.post %>
   <h5>住所</h5>
       <%= @producer.a_address %>
-  <h5>電話番号</h5>
+  <h5>お問い合わせ先電話番号</h5>
       <%= @producer.phone %>
-  <h5>メールアドレス</h5>
+  <h5>お問い合わせ先メールアドレス</h5>
       <%= @producer.email %>
       <% if @producer == current_producer %>
         <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
@@ -27,7 +27,7 @@
   <% end %>
   <h5>この生産者の周辺マップ</h5>
       <% @maps.each do |map| %>
-      周辺のマップ：<%= map.address %>
+      <%= map.address %>付近のマップ
       <% end %>
   <div id="map" style="height: 350px; width: 350px;"></div>
   <%=
