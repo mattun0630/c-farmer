@@ -1,18 +1,23 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
 			<h3 class="ribbon4">投稿一覧</h3><br>
+		</div>
+
+		<div class="col-md-8">
 				<% @posts.each do |post| %>
-						<%= attachment_image_tag post.user.user_image, :user_image, :fill, 15, 15, format: 'jpeg' ,fallback: "no_image.jpg"%>
+						<%#= attachment_image_tag post.user.user_image, :user_image, :fill, 15, 15, format: 'jpeg' ,fallback: "no_image.jpg"%>
 						『<%= post.user.user_name %>』さんが
 						『<%= post.follow_producer %>』さんの
-						『<%= post.follow_item %>』が
+						『<%= post.follow_item %>』に
 						『<%= post.title %>』を投稿しました。
 						    <details>
 						      <summary>内容について見る</summary>
 						        <dl>
 						          <dt>
-									<%= post.description %>
+						          	<div class="box8">
+										<%= post.description %>
+									</div>
 								　</dt>
 					            </dl>
 					        </details>
@@ -21,7 +26,9 @@
 						      <summary>『<%= reply.producer.producer_name %>』さんが返信しました</summary>
 						        <dl>
 						          <dt>
-									『<%= reply.comment %>』
+						          	<div class="box10">
+									 <p>『<%= reply.comment %>』</p>
+									</div>
 								　</dt>
 					            </dl>
 					        </details>

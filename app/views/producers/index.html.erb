@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
 			<h3 class="ribbon4">全ての生産者</h3><br>
+		</div>
+        <div class="col-md-8">
 			<% @producers.each do |producer| %>
-				<%= attachment_image_tag producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+				<%= attachment_image_tag producer, :producer_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%>
 				<%= link_to producer.producer_name, producer_path(producer.id)%>
 				<%= producer.a_address %>
 				<% if user_signed_in? %>

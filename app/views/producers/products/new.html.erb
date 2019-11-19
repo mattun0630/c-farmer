@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
 			<h3 class="ribbon4">商品新規追加</h3>
 			<%= form_for(@product, url: producers_products_path) do |f| %>
 				<%= f.label :product_image, "商品画像" %><br>
@@ -8,7 +8,7 @@
 			    <%= f.label :product_name, "商品名" %><br>
 			    <%= f.text_field :product_name %><br>
 			    <%= f.label :detail, "商品概要" %><br>
-			    <%= f.text_field :detail %><br>
+			    <%= f.text_area :detail %><br>
                 <details>
                   <summary>全部のタグを出す</summary>
                     <dl>

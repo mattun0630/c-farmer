@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
             <%= form_for(@product, url: {controller: 'producers/products', action: 'search' }) do |f| %>
-                <h3 class="ribbon4"><%= f.label "キーワードとタグで商品検索" %></h3><br>
+                <h3 class="ribbon4"><%= f.label "キーワード＋タグで商品検索" %></h3><br>
                 <%= f.text_field :product_name %><br>
+                <%= f.submit '検索' %>
                 <details>
                   <summary>全部のタグを出す</summary>
                     <dl>
@@ -17,11 +18,12 @@
                           </dt>
                         </dl>
                     </details>
-                <%= f.submit '検索' %>
             <% end %>
+        </div>
+        <div class="col-md-8">
             <% @products.each do |product| %>
                 <%= link_to product_path(product) do %>
-                    <%= attachment_image_tag product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
+                    <%= attachment_image_tag product, :product_image, size: "200x200", format: 'jpeg' ,fallback: "no_image.jpg"%>
                 <%= product.product_name %>
                 <% end %>
                 <details>
@@ -40,7 +42,6 @@
                       </dl>
                     </div>
                 </details>
-                <hr>
             <% end %>
         </div>
     </div>

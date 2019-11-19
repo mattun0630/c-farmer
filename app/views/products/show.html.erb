@@ -1,11 +1,14 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-4">
+        	<%= attachment_image_tag @product, :product_image, size: "400x400", format: 'jpeg' ,fallback: "no_image.jpg"%>
+        </div>
+        <div class="col-md-8">
 			<h3 class="ribbon4">商品詳細</h3><br>
-				<%= attachment_image_tag @product, :product_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
 			<div class="user">商品名</div>
 			  <%= @product.product_name %>
 			<div class="user">商品概要</div>
 			<div class="box8"><%= @product.detail %></div>
+		</div>
     </div>
 </div>

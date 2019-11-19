@@ -1,12 +1,11 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-10 col-md-offset-1">
             <%= form_for(@post, url: posts_path)  do |f| %>
 
               <h3 class="ribbon4">全ての投稿へ投稿する</h3><br>
-                    <p><%= f.radio_button :title, "質問" %>質問</p>
-                    <p><%= f.radio_button :title, "届いたよ！" %>届いたよ！</p>
-                    <p><%= f.radio_button :title, "メッセージ" %>メッセージ！</p>
+                    <p><%= f.radio_button :title, "生産者に質問" %>生産者に質問</p>
+                    <p><%= f.radio_button :title, "生産者にメッセージ" %>生産者にメッセージ！</p>
 
               <h3 class="ribbon4">フォローしている生産者</h3><br>
                     <%= f.collection_select :follow_producer, @producers, :producer_name, :producer_name,{prompt: ""},{class: "parent"} %><br>
@@ -15,7 +14,7 @@
 <!--                   <% @producers.each do |producer| %>
                       <%= f.collection_select :follow_item, producer.products, :product_name, :product_name, {class: "children"}, data:{value: producer.producer_name} %>
                    <% end %> -->
-                   <%= f.text_area :follow_item %><br>
+                   <%= f.text_field :follow_item %><br>
 
               <h3 class="ribbon4">商品に対する要望など</h3><br>
                     <%= f.text_area :description %><br>

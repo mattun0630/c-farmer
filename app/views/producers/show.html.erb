@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h3 class="ribbon4"><%= @producer.producer_name %>のページ</h3><br>
-                  <%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%><br>
-                  <div class="user"><%= @producer.producer_name %></div>
+        <div class="col-md-3">
+            <h3 class="ribbon4"><%= @producer.producer_name %>について</h3><br>
+                  <%= attachment_image_tag @producer, :producer_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%><br>
+                  <div class="user">生産者名</div>
+                    <%= @producer.producer_name %>
                   <div class="user">郵便番号</div>
                       <%= @producer.post %>
                   <div class="user">住所</div>
@@ -16,27 +17,13 @@
                     <div class="user"><%= link_to "プロフィール編集", edit_producer_path(@producer) %></div>
                     <div class="user"><%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%></div>
                   <% end %>
-                  <div class="user"><h5>この生産者の商品一覧</h5></div>
-                      <% @products.each do |product| %>
-                        <%= product.product_name %>
-                        <%= product.detail %>
-                        <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
-                      <% end %>
-                  <details>
-                   <summary>返信一覧</summary>
-                      <dl>
-                        <dt>
-                          <% @replys.each do |reply| %>
-                          <%= reply.comment %>
-                        </dt>
-                      </dl>
-                  </details>
-                  <% end %>
-                  <div class="user"><h5>この生産者の周辺マップ</h5></div>
+        </div>
+        <div class="col-md-3">
+                  <h3 class="ribbon4">この生産者の周辺マップ</h3><br>
                       <% @maps.each do |map| %>
                       <%= map.address %>付近のマップ
                       <% end %>
-                  <div id="map" style="height: 350px; width: 350px;"></div>
+                  <div id="map" style="height: 300px; width: 300px;"></div>
                   <%=
                     map(:center => {
                         :latlng => [36, 140],
@@ -92,6 +79,28 @@
 
                   }
                 </script>
+        </div>
+        <div class="col-md-6">
+                      <h3 class="ribbon4">この生産者の商品一覧</h3><br>
+                      <% @products.each do |product| %>
+                      <%= attachment_image_tag product, :product_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%>
+                      <dt><%= product.product_name %></dt>
+                 <details>
+                   <summary>商品詳細</summary>
+                    <div class="box8">
+                      <dl>
+                        <dt><div class="user"><%= product.product_name %></div></dt>
+                        <dt><div class="user"><%= product.detail %></div></dt>
+                        <dt><div class="user">この商品についているタブ<br><%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+                        </div></dt>
+                      </dl>
+                    </div>
+                  </details>
+                      <% end %>
+<!--                   <h5>返信一覧</h5>
+                          <% @replys.each do |reply| %>
+                          <%= reply.comment %>
+                  <% end %> -->
         </div>
     </div>
 </div>

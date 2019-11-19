@@ -4,7 +4,7 @@ class RepliesController < ApplicationController
         reply = current_producer.replys.build(reply_params)
         reply.post_id = post.id
         reply.save
-        redirect_to post_path(post.id)
+        redirect_to posts_path
     end
     private
     def reply_params

@@ -1,27 +1,67 @@
-<h3 class="ribbon4">マイページ</h3><br>
-			<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
-	<h5>ニックネーム</h5>
-			<%= @user.user_name %>
-	<h5>メールアドレス</h5>
-			<%= @user.email %>
-			<% if @user.id == current_user.id %>
-				<%= link_to "基本情報変更", edit_user_path(@user) %>
-				<%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%><br>
-			<% end %>
-	<h3 class="ribbon4">自分の全ての投稿</h3><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+		<h3 class="ribbon4">マイページ</h3><br>
+					<%= attachment_image_tag @user, :user_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%>
+			<div class="user">ニックネーム</div>
+				<%= @user.user_name %>
+			<div class="user">メールアドレス</div>
+				<%= @user.email %><br>
+				<% if @user.id == current_user.id %>
+					<div class="user"><%= link_to "基本情報変更", edit_user_path(@user) %></div><br>
+					<div class="user"><%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%></div><br>
+				<% end %>
+		</div>
+    	<div class="col-md-3">
+			<h3 class="ribbon4">自分の全ての投稿</h3><br>
 			<% @posts.each do |post| %>
 				<%= post.title %>
-				<%= post.description %>
+				<details>
+                  <summary>投稿詳細を見る</summary>
+                    <div class="box8">
+                      <dl>
+                        <dt>
+						<%= post.description %>
+						</dt>
+                      </dl>
+                    </div>
+                </details>
 			<% end %>
-	<h3 class="ribbon4">お気に入りした全ての投稿</h3><br>
-			<% @favorite_posts.each do |post| %>
-				<%= post.title %>
-				<%= post.description %>
-			<% end %>
-	<h3 class="ribbon4">フォロー中の生産者</h3><br<
+		</div>
+		<div class="col-md-3">
+			<h3 class="ribbon4">お気に入りした全ての投稿</h3><br>
+				<% @favorite_posts.each do |post| %>
+						<%= post.title %>
+						<details>
+		                  <summary>投稿詳細を見る</summary>
+		                    <div class="box8">
+		                      <dl>
+		                        <dt>
+								<%= post.description %>
+								</dt>
+		                      </dl>
+		                    </div>
+		                </details>
+				<% end %>
+		</div>
+
+		<div class="col-md-3">
+			<h3 class="ribbon4">フォロー中の生産者</h3><br>
 			<% @follow_producers.each do |producer| %>
-				<%= producer.a_address %>
 				<%= link_to producer.producer_name, producer_path(producer.id)%>
+				<details>
+                  <summary>生産者詳細を見る</summary>
+                    <div class="box8">
+                      <dl>
+                        <dt>
+						<%= producer.a_address %>
+						</dt>
+                      </dl>
+                    </div>
+                </details>
 			<% end %>
+		</div>
+  </div>
+</div>
 
 

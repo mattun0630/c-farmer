@@ -21,6 +21,25 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.box10 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #00BCD4;
+    background: #e4fcff;/*背景色*/
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+.box10 p {
+    margin: 0; 
+    padding: 0;
+}
+
+textarea {
+  resize: none;
+  width:800px;
+  height:200px;
+}
+
 .user {
   position: relative;
   padding-left: 1.2em;/*アイコン分のスペース*/
@@ -47,6 +66,8 @@
     margin: 0;
     padding: 0;
 }
+
+
 
 .ribbon4 {
   display: inline-block;
