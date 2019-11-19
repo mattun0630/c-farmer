@@ -1,4 +1,4 @@
-<h2>マイページ</h2>
+<h3 class="ribbon4">マイページ</h3><br>
 			<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
 	<h5>ニックネーム</h5>
 			<%= @user.user_name %>
@@ -6,19 +6,19 @@
 			<%= @user.email %>
 			<% if @user.id == current_user.id %>
 				<%= link_to "基本情報変更", edit_user_path(@user) %>
-				<%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
+				<%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%><br>
 			<% end %>
-	<h2>自分の全ての投稿</h2>
+	<h3 class="ribbon4">自分の全ての投稿</h3><br>
 			<% @posts.each do |post| %>
 				<%= post.title %>
 				<%= post.description %>
 			<% end %>
-	<h2>お気に入りした全ての投稿</h2>
+	<h3 class="ribbon4">お気に入りした全ての投稿</h3><br>
 			<% @favorite_posts.each do |post| %>
 				<%= post.title %>
 				<%= post.description %>
 			<% end %>
-	<h2>フォロー中の生産者</h2>
+	<h3 class="ribbon4">フォロー中の生産者</h3><br<
 			<% @follow_producers.each do |producer| %>
 				<%= producer.a_address %>
 				<%= link_to producer.producer_name, producer_path(producer.id)%>

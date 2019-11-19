@@ -6,7 +6,7 @@ class Users::PostsController < ApplicationController
 	    @post = Post.new
 	    @user = current_user
 	    @producers =@user.follow_producers
-	    @products =@producers.products.all
+
 
   	end
   	def show

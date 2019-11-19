@@ -17,25 +17,79 @@
  *= require leaflet.markercluster.default
  */
 
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.animation {
-  width: 250px;
-  color: white;
-  background-color: grey;
+.user {
+  position: relative;
+  padding-left: 1.2em;/*アイコン分のスペース*/
+  line-height: 1.4;
+}
+
+.user:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";/*アイコンのユニコード*/
+  position: absolute;/*絶対位置*/
+  font-size: 1em;/*サイズ*/
+  left: 0;/*アイコンの位置*/
+  top: 0;/*アイコンの位置*/
+  color: #5ab9ff; /*アイコン色*/
+}
+.box8 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+}
+.box8 p {
+    margin: 0;
+    padding: 0;
+}
+
+.ribbon4 {
+  display: inline-block;
+  position: relative;
+  height: 60px;/*高さ*/
+  line-height: 60px;/*高さ*/
   text-align: center;
-  transition: all 0.5s ease-in-out;
-}
-div.animation:hover {
-  width: 500px;
-  background-color: blue;
+  padding: 0 40px 0 18px;/*文字の左右の余白*/
+  font-size: 18px;/*文字サイズ*/
+  background: #CF8151;/*背景色*/
+  color: #FFF;/*文字色*/
+  box-sizing: border-box;
 }
 
+.ribbon4:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
 
+.ribbon4:after {
+  top: 0;
+  right: 0;
+  border-width: 30px 15px 30px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
+
+.devise {
+  position: relative;
+  padding: 0.2em 0.5em;
+  background: -webkit-linear-gradient(to right, rgb(255, 124, 111), #ffc994);
+  background: linear-gradient(to right, rgb(255, 124, 111), #ffc994);
+  color: white;
+  font-weight: lighter;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.56);
+}
 
 .body {
-  background-color: #FFFFEE;
+    background: #F3E5C8;
+
 }
 
 
@@ -45,7 +99,8 @@ div.animation:hover {
   top: 0;
   width: 100%;
   height: 40px;
-  background-color: hsla(0,0%,96%,.9);
+  background-color: #7C9995;
+  z-index: 10;
   box-shadow: 0 2px 6px rgba(0,0,0,.16);
 }
 .global-nav {

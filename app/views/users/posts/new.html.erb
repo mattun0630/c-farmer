@@ -1,41 +1,51 @@
-<br><br>
-  <%= form_for(@post, url: posts_path)  do |f| %>
-    <h4>投稿内容</h4>
-          <p><%= f.radio_button :title, "質問" %>質問</p>
-          <p><%= f.radio_button :title, "届いたよ！" %>届いたよ！</p>
-          <p><%= f.radio_button :title, "メッセージ" %>メッセージ！</p>
-    <h4>フォローしている生産者</h4>
-          <%= f.collection_select :follow_producer, @producers, :producer_name, :producer_name,{prompt: ""},{class: "parent"} %>
-     <h4>フォローしている生産者の商品</h4>
-        <% @producers.each do |producer| %>
-            <%= f.collection_select :follow_item, producer.products, :product_name, :product_name, {class: "children"}, data:{value: producer.producer_name} %>
-         <% end %>
-    <h4>商品に対する要望など</h4>
-          <%= f.text_area :description %>
-    <%= f.submit '投稿' %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <%= form_for(@post, url: posts_path)  do |f| %>
 
-  <% end %>
-  <script>
-    $(function() {
-  var $children = $('#post_follow_item');
-  var original = $children.html();
+              <h3 class="ribbon4">全ての投稿へ投稿する</h3><br>
+                    <p><%= f.radio_button :title, "質問" %>質問</p>
+                    <p><%= f.radio_button :title, "届いたよ！" %>届いたよ！</p>
+                    <p><%= f.radio_button :title, "メッセージ" %>メッセージ！</p>
 
-  $('.parent').change(function() {
-    var val1 = $(this).val();
+              <h3 class="ribbon4">フォローしている生産者</h3><br>
+                    <%= f.collection_select :follow_producer, @producers, :producer_name, :producer_name,{prompt: ""},{class: "parent"} %><br>
 
-    $children.html(original).find('option').each(function() {
-      var val2 = $(this).data('val');
-      if (val1 != val2) {
-        $(this).not('optgroup,.msg').remove();
-      }
-    });
+               <h3 class="ribbon4">フォローしている生産者の商品</h3><br>
+<!--                   <% @producers.each do |producer| %>
+                      <%= f.collection_select :follow_item, producer.products, :product_name, :product_name, {class: "children"}, data:{value: producer.producer_name} %>
+                   <% end %> -->
+                   <%= f.text_area :follow_item %><br>
 
-    if ($(this).val() === '') {
-      $children.attr('disabled', 'disabled');
-    } else {
-      $children.removeAttr('disabled');
-    }
+              <h3 class="ribbon4">商品に対する要望など</h3><br>
+                    <%= f.text_area :description %><br>
+              <%= f.submit '投稿' %>
 
-  });
-});
-  </script>
+            <% end %>
+            <script>
+                  $(function() {
+                    var $children = $('#post_follow_item');
+                    var original = $children.html();
+
+                  $('.parent').change(function() {
+                  var val1 = $(this).val();
+
+                    $children.html(original).find('option').each(function() {
+                      var val2 = $(this).data('val');
+                      if (val1 != val2) {
+                        $(this).not('optgroup,.msg').remove();
+                      }
+                    });
+
+                    if ($(this).val() === '') {
+                      $children.attr('disabled', 'disabled');
+                    } else {
+                      $children.removeAttr('disabled');
+                    }
+
+                });
+                });
+            </script>
+        </div>
+    </div>
+</div>

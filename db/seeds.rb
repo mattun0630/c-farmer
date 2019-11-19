@@ -29,12 +29,12 @@ array.each{ |tag|
   tag_list.save
 }
 
-User.create(:email => 'example@user.com', :password => '000000')
-Producer.create(:email => 'example@producer.com', :password => '000000')
+# User.create(:email => 'example@user.com', :password => '000000')
+# Producer.create(:email => 'example@producer.com', :password => '000000')
 
-if Rails.env == "development"
-    5.times do |i|
-        Product.create!(:producer_id=>1, :tag_id=>1, :detail=>1,:product_name=> "商品名" + (i + 1).to_s)
-        Post.create!(:user_id=>1, :follow_item=> "商品名" + (i + 1).to_s)
-    end
-end
+# if Rails.env == "development"
+#     5.times do |i|
+#         Product.create!(:producer_id=>1, :tag_id=>1, :detail=>1,:product_name=> "商品名" + (i + 1).to_s)
+#         Post.create!(:user_id=>1, :follow_item=> "商品名" + (i + 1).to_s)
+#     end
+# end

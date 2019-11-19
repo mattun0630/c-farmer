@@ -1,14 +1,29 @@
-<h2>商品新規追加</h2>
-<%= form_for(@product, url: producers_products_path) do |f| %>
-	<%= f.label :product_image %><br>
-	<%= f.attachment_field  :product_image %>
-    <%= f.label :product_name %><br>
-    <%= f.text_field :product_name %><br>
-    <%= f.label :detail %><br>
-    <%= f.text_field :detail %><br>
-	    <% @tags.each do |tag| %>
-		    <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
-		    <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
-	  	<% end %>
-    <%= f.submit '保存' %>
-<% end %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+			<h3 class="ribbon4">商品新規追加</h3>
+			<%= form_for(@product, url: producers_products_path) do |f| %>
+				<%= f.label :product_image, "商品画像" %><br>
+				<%= f.attachment_field  :product_image %>
+			    <%= f.label :product_name, "商品名" %><br>
+			    <%= f.text_field :product_name %><br>
+			    <%= f.label :detail, "商品概要" %><br>
+			    <%= f.text_field :detail %><br>
+                <details>
+                  <summary>全部のタグを出す</summary>
+                    <dl>
+                      <dt>
+                        <div class="box8">
+						    <% @tags.each do |tag| %>
+							    <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
+							    <%= f.label " #{tag.name}(#{tag.taggings_count})" %>
+						  	<% end %>
+						</div>
+                      </dt>
+                    </dl>
+                </details>
+			   <%= f.submit '保存' %>
+			<% end %>
+		</div>
+    </div>
+</div>

@@ -1,87 +1,97 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3 class="ribbon4"><%= @producer.producer_name %>のページ</h3><br>
+                  <%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%><br>
+                  <div class="user"><%= @producer.producer_name %></div>
+                  <div class="user">郵便番号</div>
+                      <%= @producer.post %>
+                  <div class="user">住所</div>
+                      <%= @producer.a_address %>
+                  <div class="user">お問い合わせ先電話番号</div>
+                      <%= @producer.phone %>
+                  <div class="user">お問い合わせ先メールアドレス</div>
+                      <%= @producer.email %><br>
+                  <% if @producer == current_producer %>
+                    <div class="user"><%= link_to "プロフィール編集", edit_producer_path(@producer) %></div>
+                    <div class="user"><%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%></div>
+                  <% end %>
+                  <div class="user"><h5>この生産者の商品一覧</h5></div>
+                      <% @products.each do |product| %>
+                        <%= product.product_name %>
+                        <%= product.detail %>
+                        <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+                      <% end %>
+                  <details>
+                   <summary>返信一覧</summary>
+                      <dl>
+                        <dt>
+                          <% @replys.each do |reply| %>
+                          <%= reply.comment %>
+                        </dt>
+                      </dl>
+                  </details>
+                  <% end %>
+                  <div class="user"><h5>この生産者の周辺マップ</h5></div>
+                      <% @maps.each do |map| %>
+                      <%= map.address %>付近のマップ
+                      <% end %>
+                  <div id="map" style="height: 350px; width: 350px;"></div>
+                  <%=
+                    map(:center => {
+                        :latlng => [36, 140],
+                        :zoom => 4,
+                    })
+                  %>
+                <script>
+                  // rubyから渡された住所配列をjsの変数に格納
+                  var maps = <%= @maps.to_json.html_safe %>;
 
-  <h3><%= @producer.producer_name %>のページ</h3>
-      <%= attachment_image_tag @producer, :producer_image, :fill, 100, 100, format: 'jpeg' ,fallback: "no_image.jpg"%>
-  <h5></h5>
-      <%= @producer.producer_name %>
-  <h5>郵便番号</h5>
-      <%= @producer.post %>
-  <h5>住所</h5>
-      <%= @producer.a_address %>
-  <h5>お問い合わせ先電話番号</h5>
-      <%= @producer.phone %>
-  <h5>お問い合わせ先メールアドレス</h5>
-      <%= @producer.email %>
-      <% if @producer == current_producer %>
-        <%= link_to "プロフィール編集", edit_producer_path(@producer) %>
-        <%= link_to '退会', producer_path(@producer), method: :delete, data: { confirm: '退会しますか？' }%>
-      <% end %>
-  <h5>この生産者の商品一覧</h5>
-      <% @products.each do |product| %>
-        <%= product.product_name %>
-        <%= product.detail %>
-        <%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
-      <% end %>
-  <h5>この生産者の返信一覧</h5>
-      <% @replys.each do |reply| %>
-        返信:<%= reply.comment %>
-  <% end %>
-  <h5>この生産者の周辺マップ</h5>
-      <% @maps.each do |map| %>
-      <%= map.address %>付近のマップ
-      <% end %>
-  <div id="map" style="height: 350px; width: 350px;"></div>
-  <%=
-    map(:center => {
-        :latlng => [36, 140],
-        :zoom => 4,
-    })
-  %>
-<script>
-  // rubyから渡された住所配列をjsの変数に格納
-  var maps = <%= @maps.to_json.html_safe %>;
+                  for(var hash_count = 0; hash_count < maps.length; hash_count++){
+                    // 緯度経度とコメントを取り出しマーカー化
+                    L.marker(maps[hash_count].lonlat.split(','), {icon: L.icon({iconUrl: "/marker.png"})},)
+                      .bindPopup(maps[hash_count].comment)
+                      .addTo(map);
+                      //スケールコントロールを最大幅200px、右下、m単位で地図に追加
+                      L.control.scale({ maxWidth: 200, position: 'bottomright', imperial: false }).addTo(map);
 
-  for(var hash_count = 0; hash_count < maps.length; hash_count++){
-    // 緯度経度とコメントを取り出しマーカー化
-    L.marker(maps[hash_count].lonlat.split(','), {icon: L.icon({iconUrl: "/marker.png"})},)
-      .bindPopup(maps[hash_count].comment)
-      .addTo(map);
-      //スケールコントロールを最大幅200px、右下、m単位で地図に追加
-      L.control.scale({ maxWidth: 200, position: 'bottomright', imperial: false }).addTo(map);
+                      //地図の中心とズームレベルを指定
+                      map.setView([35.40, 136], 7);
 
-      //地図の中心とズームレベルを指定
-      map.setView([35.40, 136], 7);
+                      //地理院地図の標準地図タイル
+                      var gsi =L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', 
+                        {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"});
+                      //地理院地図の淡色地図タイル
+                      var gsipale = L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
+                        {attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>地理院タイル</a>"});
+                      //オープンストリートマップのタイル
+                      var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png',
+                        {  attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors" });
+                      //baseMapsオブジェクトのプロパティに3つのタイルを設定
+                      var baseMaps = {
+                        "地理院地図" : gsi,
+                        "淡色地図" : gsipale,
+                        "オープンストリートマップ"  : osm
+                      };
+                      //layersコントロールにbaseMapsオブジェクトを設定して地図に追加
+                      //コントロール内にプロパティ名が表示される
+                      L.control.layers(baseMaps).addTo(map);
+                      gsi.addTo(map);
+                      //地図のclickイベントでonMapClick関数を呼び出し
+                      map.on('click', onMapClick);
+                      }
+                      function onMapClick(e) {
+                      //地図のclickイベント呼び出される
+                      //クリック地点の座標にマーカーを追加、マーカーのclickイベントでonMarkerClick関数を呼び出し
+                      var mk = L.marker(e.latlng).on('click', onMarkerClick).addTo(map);
+                      }
+                      function onMarkerClick(e) {
+                      //マーカーのclickイベント呼び出される
+                      //クリックされたマーカーを地図のレイヤから削除する
+                      map.removeLayer(e.target);
 
-      //地理院地図の標準地図タイル
-      var gsi =L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', 
-        {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"});
-      //地理院地図の淡色地図タイル
-      var gsipale = L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
-        {attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>地理院タイル</a>"});
-      //オープンストリートマップのタイル
-      var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png',
-        {  attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors" });
-      //baseMapsオブジェクトのプロパティに3つのタイルを設定
-      var baseMaps = {
-        "地理院地図" : gsi,
-        "淡色地図" : gsipale,
-        "オープンストリートマップ"  : osm
-      };
-      //layersコントロールにbaseMapsオブジェクトを設定して地図に追加
-      //コントロール内にプロパティ名が表示される
-      L.control.layers(baseMaps).addTo(map);
-      gsi.addTo(map);
-      //地図のclickイベントでonMapClick関数を呼び出し
-      map.on('click', onMapClick);
-      }
-      function onMapClick(e) {
-      //地図のclickイベント呼び出される
-      //クリック地点の座標にマーカーを追加、マーカーのclickイベントでonMarkerClick関数を呼び出し
-      var mk = L.marker(e.latlng).on('click', onMarkerClick).addTo(map);
-      }
-      function onMarkerClick(e) {
-      //マーカーのclickイベント呼び出される
-      //クリックされたマーカーを地図のレイヤから削除する
-      map.removeLayer(e.target);
-
-  }
-</script>
+                  }
+                </script>
+        </div>
+    </div>
+</div>
