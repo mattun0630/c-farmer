@@ -11,6 +11,9 @@ class Producers::ProductsController < ApplicationController
       # エラーを見つける時に使う
       # puts @product.errors.full_messages
   end
+  def show
+      @product = Product.find(params[:id])
+  end
   def index
       @tags = ActsAsTaggableOn::Tag.all
      if params[:tag]

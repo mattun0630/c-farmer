@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4">
             <%= form_for(@product, url: {controller: 'producers/products', action: 'search' }) do |f| %>
-                <h3 class="ribbon4"><%= f.label "キーワード＋タグで商品検索" %></h3><br>
+                <h3 class="ribbon4"><%= f.label "キーワード＋タグorタグで商品検索" %></h3><br>
                 <%= f.text_field :product_name %><br>
                 <%= f.submit '検索' %>
                 <details>
@@ -21,28 +21,36 @@
             <% end %>
         </div>
         <div class="col-md-8">
+          <div class="clearfix">
             <% @products.each do |product| %>
-                <%= link_to product_path(product) do %>
-                    <%= attachment_image_tag product, :product_image, size: "200x200", format: 'jpeg' ,fallback: "no_image.jpg"%>
-                <%= product.product_name %>
-                <% end %>
-                <details>
-                  <summary>商品詳細を見る</summary>
-                    <div class="box8">
-                      <dl>
-                        <dt>
-                          商品名　：<%= product.product_name %>
-                        </dt>
-                        <dt>
-                          この商品について　：<%= product.detail %>
-                        </dt>
-                        <dt>
-                          この商品についているタグ　:<%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
-                        </dt>
-                      </dl>
-                    </div>
+                <div class="contents-item">
+                  <%= link_to product_path(product) do %>
+                      <%= attachment_image_tag product, :product_image, size: "200x150", format: 'jpeg' ,fallback: "no_image.jpg"%>
+                  <div class="user"><%= product.product_name %></div>
+                  <% end %>
+                  <details>
+                    <summary>商品詳細を見る</summary>
+                      <div class="box8">
+                        <dl>
+                          <dt>
+                            <div class="user">商品名　：<%= product.product_name %></div>
+                          </dt>
+                          <dt>
+                            <%= link_to producer_path(product.producer_id) do %>
+                              <div class="user">生産者名：<%= product.producer.producer_name %></div>
+                            <% end %>
+                          </dt>
+                          <dt>
+                           <div class="user">
+                           この商品についているタグ　:<%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+                          </div>
+                          </dt>
+                        </dl>
+                      </div>
                 </details>
+              </div>
             <% end %>
+          </div>
         </div>
     </div>
 </div>

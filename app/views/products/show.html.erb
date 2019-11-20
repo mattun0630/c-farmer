@@ -5,8 +5,8 @@
         </div>
         <div class="col-md-8">
 			<h3 class="ribbon4">商品詳細</h3><br>
-			<div class="user">商品名</div>
-			  <%= @product.product_name %>
+			<div class="user">商品名:<%= @product.product_name %></div>
+              <div class="user">生産者名：<%= @product.producer.producer_name %></div>
 			<div class="user">商品概要</div>
 			<div class="box8"><%= @product.detail %></div>
 		</div>

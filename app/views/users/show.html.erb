@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-		<h3 class="ribbon4">マイページ</h3><br>
-					<%= attachment_image_tag @user, :user_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%>
+			<h3 class="ribbon4">マイページ</h3><br>
+			<%= attachment_image_tag @user, :user_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%><br>
 			<div class="user">ニックネーム</div>
 				<%= @user.user_name %>
 			<div class="user">メールアドレス</div>
-				<%= @user.email %><br>
+				<%= @user.email %>
 				<% if @user.id == current_user.id %>
 					<div class="user"><%= link_to "基本情報変更", edit_user_path(@user) %></div><br>
 					<div class="user"><%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%></div><br>
@@ -15,13 +15,13 @@
     	<div class="col-md-3">
 			<h3 class="ribbon4">自分の全ての投稿</h3><br>
 			<% @posts.each do |post| %>
-				<%= post.title %>
+				<div class="user">『<%= post.user.user_name %>』さんの『<%= post.title %>』</div>
 				<details>
                   <summary>投稿詳細を見る</summary>
                     <div class="box8">
                       <dl>
                         <dt>
-						<%= post.description %>
+							<%= post.description %>
 						</dt>
                       </dl>
                     </div>
@@ -31,13 +31,13 @@
 		<div class="col-md-3">
 			<h3 class="ribbon4">お気に入りした全ての投稿</h3><br>
 				<% @favorite_posts.each do |post| %>
-						<%= post.title %>
+				<div class="user"><%= link_to user_path(post.user_id) do %>『<%= post.user.user_name %>』<% end %>さんの『<%= post.title %>』</div>
 						<details>
 		                  <summary>投稿詳細を見る</summary>
 		                    <div class="box8">
 		                      <dl>
 		                        <dt>
-								<%= post.description %>
+									<%= post.description %>
 								</dt>
 		                      </dl>
 		                    </div>
@@ -48,13 +48,15 @@
 		<div class="col-md-3">
 			<h3 class="ribbon4">フォロー中の生産者</h3><br>
 			<% @follow_producers.each do |producer| %>
-				<%= link_to producer.producer_name, producer_path(producer.id)%>
+				<div class="user"><%= link_to producer.producer_name, producer_path(producer.id)%></div>
 				<details>
                   <summary>生産者詳細を見る</summary>
                     <div class="box8">
                       <dl>
                         <dt>
-						<%= producer.a_address %>
+                        	<%= attachment_image_tag producer, :producer_image, size: "250x250", format: 'jpeg' ,fallback: "no_image.jpg"%><br>
+	                       	問い合わせ電話番号:<br><%= producer.phone %><br>
+							問い合わせメールアドレス:<br><%= producer.email %>
 						</dt>
                       </dl>
                     </div>

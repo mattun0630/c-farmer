@@ -84,7 +84,7 @@
                       <h3 class="ribbon4">この生産者の商品一覧</h3><br>
                       <% @products.each do |product| %>
                       <%= attachment_image_tag product, :product_image, size: "300x300", format: 'jpeg' ,fallback: "no_image.jpg"%>
-                      <dt><%= product.product_name %></dt>
+                      <dt><div class="user"><%= product.product_name %></div>
                  <details>
                    <summary>商品詳細</summary>
                     <div class="box8">
