@@ -8,6 +8,7 @@ class Producer < ApplicationRecord
   has_many :maps
   has_many :replys
   has_many :reply_posts, through: :replys, source: :post
+  is_impressionable
   def followed_by?(user)
      follows.where(user_id: user.id).exists?
   end

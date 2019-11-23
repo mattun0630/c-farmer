@@ -3,14 +3,14 @@
         <div class="col-md-10 col-md-offset-1">
 			<h3 class="ribbon4">商品新規追加</h3>
 			<%= form_for(@product, url: producers_products_path) do |f| %>
-				<%= f.label :product_image, "商品画像" %><br>
+				<p><%= f.label :product_image, "商品画像" %></p>
 				<%= f.attachment_field  :product_image %>
-			    <%= f.label :product_name, "商品名" %><br>
-			    <%= f.text_field :product_name %><br>
-			    <%= f.label :detail, "商品概要" %><br>
-			    <%= f.text_area :detail %><br>
+			    <p><%= f.label :product_name, "商品名" %></p>
+			    <%= f.text_field :product_name %>
+			    <p><%= f.label :detail, "商品概要" %></p>
+			    <%= f.text_area :detail %>
                 <details>
-                  <summary>全部のタグを出す</summary>
+                  <summary>タグ入力　※１個以上必須</summary>
                     <dl>
                       <dt>
                         <div class="box8">
@@ -22,7 +22,7 @@
                       </dt>
                     </dl>
                 </details>
-			   <%= f.submit '保存' %>
+			   <%= f.submit '保存', :class=>"button"   %>
 			<% end %>
 		</div>
     </div>

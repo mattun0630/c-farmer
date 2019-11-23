@@ -3,8 +3,8 @@
         <div class="col-md-4">
             <%= form_for(@product, url: {controller: 'producers/products', action: 'search' }) do |f| %>
                 <h3 class="ribbon4"><%= f.label "キーワード＋タグorタグで商品検索" %></h3><br>
-                <%= f.text_field :product_name %><br>
-                <%= f.submit '検索' %>
+                <p><%= f.text_field :product_name %></p>
+                <p><%= f.submit '検索', :class=>"button"  %></p>
                 <details>
                   <summary>全部のタグを出す</summary>
                     <dl>
@@ -33,16 +33,19 @@
                       <div class="box8">
                         <dl>
                           <dt>
-                            <div class="user">商品名　：<%= product.product_name %></div>
+                            <div class="user">商品名</div>
+                            <p><%= product.product_name %></p>
                           </dt>
                           <dt>
                             <%= link_to producer_path(product.producer_id) do %>
-                              <div class="user">生産者名：<%= product.producer.producer_name %></div>
+                              <div class="user">生産者名</div>
+                                <p><%= product.producer.producer_name %></p>
                             <% end %>
                           </dt>
                           <dt>
                            <div class="user">
-                           この商品についているタグ　:<%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+                           <p>この商品についているタグ</p>
+                           <p><%= raw(product.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
                           </div>
                           </dt>
                         </dl>

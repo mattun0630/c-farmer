@@ -94,3 +94,5 @@ gem  'pry-byebug'
 gem "jquery-rails"
 
 gem 'jquery-turbolinks'
+
+gem 'impressionist'

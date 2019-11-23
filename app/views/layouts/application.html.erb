@@ -28,7 +28,7 @@
     <li class="global-nav__item"><a href=""><%= link_to "全ての商品を見る", products_path %></a></li>
     <li class="global-nav__item"><a href=""><%= link_to "全ての投稿を見る", posts_path %></a></li>
     <li class="global-nav__item"><a href=""><%= link_to "全ての生産者を見る", producers_path %></a></li>
-    <!-- <li class="global-nav__item"><a href=""><%= link_to "お問い合わせ", inquiry_path %></a></li> -->
+    <li class="global-nav__item"><a href=""><%= link_to "お問い合わせ", inquiry_path %></a></li>
       <% elsif producer_signed_in? %>
       <li class="global-nav__item"><a href="">
         <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
@@ -39,7 +39,7 @@
       <li class="global-nav__item"><a href=""><%= link_to "全ての商品を見る", products_path %></a></li>
       <li class="global-nav__item"><a href=""><%= link_to "全ての投稿を見る", posts_path %></a></li>
       <li class="global-nav__item"><a href=""><%= link_to "全ての生産者を見る", producers_path %></a></li>
-      <!-- <li class="global-nav__item"><a href=""><%= link_to "お問い合わせ", inquiry_path %></a></li> -->
+      <li class="global-nav__item"><a href=""><%= link_to "お問い合わせ", inquiry_path %></a></li>
       <% else %>
       <li class="global-nav__item"><a href=""><%= link_to "ユーザ新規登録", new_user_registration_path %></a></li>
       <li class="global-nav__item"><a href=""><%= link_to "ユーザログイン", new_user_session_path %></a></li>
