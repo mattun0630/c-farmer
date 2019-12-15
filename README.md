@@ -1,8 +1,8 @@
 <h1>c-farmer</h1>
-https://c--farmer.herokuapp.com/
+<li>https://c--farmer.herokuapp.com/</li>
 
 <h2>概要</h2>
-<li>「生産者（producer）が生産物（product）にタグをつけて消費者（user)に紹介」できるアプリケーションです。</li>
+<li>「農作物にタグをつけて検索」できるアプリケーションです。</li>
 
 <h2>制作背景</h2>
 <li>食べチョク　https://www.tabechoku.com/　
