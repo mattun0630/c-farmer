@@ -11,25 +11,24 @@ https://c--farmer.herokuapp.com/
 また、生産者に地図情報を持たせるやことでより身近にユーザとコミュニケーションが取れるのは面白いのではないかと考えました。
 
 <h2>機能</h2>
--「(post)」投稿
--「(product)」投稿
--いいね機能
--フォロー機能
--コメント機能
--新規登録・ログイン・ログアウト（gem devise)
--閲覧数表示機能（gem impressionist)
--住所フォーム入力から経度、緯度取得機能(gem geolocation)
--経度、緯度から地図情報表示機能(JavaScriptライブラリ leaflet)
--複数タグ付け機能＋検索機能( gem acts-as-taggable-on)
--お問い合わせ機能（ActionMailer）
--管理者機能(rails admin)
+<li>「(post)」投稿</li>
+<li>「(product)」投稿</li>
+<li>いいね機能</li>
+<li>フォロー機能</li>
+<li>コメント機能</li>
+<li>新規登録・ログイン・ログアウト（gem devise)</li>
+<li>閲覧数表示機能（gem impressionist)</li>
+<li>住所フォーム入力から経度、緯度取得機能(gem geolocation)</li>
+<li>経度、緯度から地図情報表示機能(JavaScriptライブラリ leaflet)</li>
+<li>複数タグ付け機能＋検索機能( gem acts-as-taggable-on)</li>
+<li>お問い合わせ機能（ActionMailer）</li>
+<li>管理者機能(rails admin)</li>
 
 <h2>使用技術</h2>
 <li>Ruby</li>
--Ruby on Rails
--jQuery
--MySQL(開発環境)
--PostgreSQL(本番環境)
--AWS
--Heroku
--send grid(お問いわせメール、本番環境）
+<li>Ruby on Rails</li>
+<li>jQuery</li>
+<li>MySQL(開発環境)</li>
+<li>PostgreSQL(本番環境)</li>
+<li>Heroku</li>
+<li>send grid(お問いわせメール、本番環境）</li>
