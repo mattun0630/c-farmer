@@ -1,16 +1,16 @@
 <h1>c-farmer</h1>
 https://c--farmer.herokuapp.com/
 
-・概要
-「生産者（producer）が生産物（product）にタグをつけて消費者（user)に紹介」できるアプリケーションです。
+<h2>概要</h2>
+<li>「生産者（producer）が生産物（product）にタグをつけて消費者（user)に紹介」できるアプリケーションです。</li>
 
-・制作背景
+<h2>制作背景</h2>
 食べチョク　https://www.tabechoku.com/　
 のサイトを利用していて、自分もユーザと生産者が互いに発信できる媒体が欲しいと思い作成しました。
 生産物にタグをつけて検索できたら手間が少なくなると考えました。
 また、生産者に地図情報を持たせるやことでより身近にユーザとコミュニケーションが取れるのは面白いのではないかと考えました。
 
-・機能
+<h2>機能</h2>
 -「(post)」投稿
 -「(product)」投稿
 -いいね機能
@@ -24,8 +24,8 @@ https://c--farmer.herokuapp.com/
 -お問い合わせ機能（ActionMailer）
 -管理者機能(rails admin)
 
-・使用技術
--Ruby
+<h2>使用技術</h2>
+<li>Ruby</li>
 -Ruby on Rails
 -jQuery
 -MySQL(開発環境)
